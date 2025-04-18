@@ -1,0 +1,182 @@
+:root {
+    --bg-color: #1a1a1a;
+    --display-bg: #252525;
+    --button-bg: #333;
+    --button-hover: #444;
+    --operator-bg: #ff9500;
+    --operator-hover: #ffaa33;
+    --clear-bg: #a5a5a5;
+    --clear-hover: #b5b5b5;
+    --equals-bg: #ff9500;
+    --equals-hover: #ffaa33;
+    --text-light: #ffffff;
+    --text-dark: #000000;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #2c3e50, #4ca1af);
+    color: var(--text-light);
+  }
+  
+  .calculator-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f0f0f0;
+  }
+  
+  .calculator {
+    width: 100%;
+    max-width: 340px;
+    border-radius: 20px;
+    background: var(--bg-color, #fff);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 0; /* Remove inner padding to prevent overflow */
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .display {
+    padding: 25px 20px;
+    background: var(--display-bg);
+    text-align: right;
+  }
+  
+  .previous-operand {
+    min-height: 24px;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    word-wrap: break-word;
+  }
+  
+  #display {
+    width: 100%;
+    border: none;
+    background: transparent;
+    color: var(--text-light);
+    font-size: 3rem;
+    font-weight: 300;
+    text-align: right;
+    padding: 5px 0;
+    outline: none;
+    letter-spacing: 1px;
+  }
+  
+  .buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  
+  button {
+    border: none;
+    font-size: 1.5rem;
+    font-weight: 400;
+    cursor: pointer;
+    background: var(--button-bg);
+    color: var(--text-light);
+    border-radius: 50%;
+    aspect-ratio: 1/1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    user-select: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 100%;
+  }
+  
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  button:active {
+    transform: translateY(0);
+  }
+  
+  .span-2 {
+    grid-column: span 2;
+    border-radius: 50px !important;
+    aspect-ratio: auto !important;
+    justify-content: flex-start !important;
+    padding-left: 28px !important;
+  }
+  
+  button[onclick*="appendValue('+')"],
+  button[onclick*="appendValue('-')"],
+  button[onclick*="appendValue('*')"],
+  button[onclick*="appendValue('/')"] {
+    background: var(--operator-bg);
+    color: var(--text-light);
+  }
+  
+  button[onclick*="appendValue('+')"]:hover,
+  button[onclick*="appendValue('-')"]:hover,
+  button[onclick*="appendValue('*')"]:hover,
+  button[onclick*="appendValue('/')"]:hover {
+    background: var(--operator-hover);
+  }
+  
+  button[onclick*="clearDisplay"] {
+    background: var(--clear-bg);
+    color: var(--text-dark);
+  }
+  
+  button[onclick*="clearDisplay"]:hover {
+    background: var(--clear-hover);
+  }
+  
+  button[onclick*="calculate"] {
+    background: var(--equals-bg);
+    color: var(--text-light);
+  }
+  
+  button[onclick*="calculate"]:hover {
+    background: var(--equals-hover);
+  }
+  
+  button[onclick*="deleteLastChar"] {
+    background: var(--button-bg);
+    color: var(--text-light);
+  }
+  
+  button[onclick*="appendValue('0')"] {
+    grid-column: span 1;
+  }
+  
+  @media (max-width: 400px) {
+    .calculator-container {
+      padding: 10px;
+    }
+  
+    button {
+      padding: 18px;
+      font-size: 1.3rem;
+    }
+  
+    #display {
+      font-size: 2.5rem;
+    }
+  }
+  
